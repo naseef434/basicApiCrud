@@ -38,33 +38,38 @@ from rest_framework.response import Response
         
 #         return Response(serializer.errors)
 
-class Albumview(mixins.ListModelMixin,
-                mixins.CreateModelMixin,
-                mixins.RetrieveModelMixin,
-                mixins.UpdateModelMixin,
-                mixins.DestroyModelMixin,
-                generics.GenericAPIView):
+# class Albumview(mixins.ListModelMixin,
+#                 mixins.CreateModelMixin,
+#                 mixins.RetrieveModelMixin,
+#                 mixins.UpdateModelMixin,
+#                 mixins.DestroyModelMixin,
+#                 generics.GenericAPIView):
     
+#     queryset = Album.objects.all()
+#     serializer_class = AlbumSerializer
+#     lookup_field = 'pk'
+   
+    # #List all 
+    # def get(self,request,*arg, **kwargs):
+    #     return self.list(request,*arg, **kwargs)
+   
+    # # create
+    # def post(self, request, *args, **kwargs):
+    #     return self.create(request, *args, **kwargs)
+   
+    # # get single object
+    # def get(self, request, *args, **kwargs):
+    #     return self.retrieve(self, request, *args, **kwargs)
+    
+    # # update
+    # def put(self, request, *args, **kwargs):
+    #     return self.update(self, request, *args, **kwargs)
+    
+    # # delete
+    # def delete(self, request, *args, **kwargs):
+    #     return self(self, request, *args, **kwargs)
+    
+#Using generic class-based views 
+class Albumview(generics.ListCreateAPIView,generics.RetrieveUpdateDestroyAPIView):
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
-    lookup_field = 'pk'
-   
-    #List all 
-    def get(self,request,*arg, **kwargs):
-        return self.list(request,*arg, **kwargs)
-   
-    # create
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-   
-    # get single object
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(self, request, *args, **kwargs)
-    
-    # update
-    def put(self, request, *args, **kwargs):
-        return self.update(self, request, *args, **kwargs)
-    
-    # delete
-    def delete(self, request, *args, **kwargs):
-        return self(self, request, *args, **kwargs)
